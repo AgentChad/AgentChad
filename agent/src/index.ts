@@ -325,14 +325,14 @@ export async function loadCharacters(
         }
     }
 
-    if (hasValidRemoteUrls()) {
-        elizaLogger.info("Loading characters from remote URLs");
-        let characterUrls = commaSeparatedStringToArray(process.env.REMOTE_CHARACTER_URLS)
-        for (const characterUrl of characterUrls) {
-            const character = await loadCharacterFromUrl(characterUrl);
-            loadedCharacters.push(character);
-        }
-    }
+   // if (hasValidRemoteUrls()) {
+   //     elizaLogger.info("Loading characters from remote URLs");
+   //     let characterUrls = commaSeparatedStringToArray(process.env.REMOTE_CHARACTER_URLS)
+   //     for (const characterUrl of characterUrls) {
+   //         const character = await loadCharacterFromUrl(characterUrl);
+   //         loadedCharacters.push(character);
+   //     }
+   // }
 
     if (loadedCharacters.length === 0) {
         elizaLogger.info("No characters found, using default character");
@@ -1101,9 +1101,14 @@ const checkPortAvailable = (port: number): Promise<boolean> => {
     });
 };
 
+
+// Commented-out alternative implementation (for reference):
+// const hasValidRemoteUrls = () =>
+
+
 const hasValidRemoteUrls = () =>
     process.env.REMOTE_CHARACTER_URLS != "" &&
-    process.env.REMOTE_CHARACTER_URLS.startsWith("http")
+    process.env.REMOTE_CHARACTER_URLS.startsWith("");
 
 const startAgents = async () => {
     const directClient = new DirectClient();
@@ -1111,8 +1116,9 @@ const startAgents = async () => {
     const args = parseArguments();
     let charactersArg = args.characters || args.character;
     let characters = [defaultCharacter];
-
-    if (charactersArg || hasValidRemoteUrls()) {
+    //if (charactersArg || hasValidRemoteUrls()) {
+    if (charactersArg) {
+    
         characters = await loadCharacters(charactersArg);
     }
 
@@ -1154,7 +1160,8 @@ const startAgents = async () => {
 
 startAgents().catch((error) => {
     elizaLogger.error("Unhandled error in startAgents:", error);
-    process.exit(1);
+    process.exit
+    (1);
 });
 
 // Prevent unhandled exceptions from crashing the process if desired
