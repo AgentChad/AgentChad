@@ -44,8 +44,9 @@ If you want custom usage, for example, twitter-client to search the web before p
 
 ```typescript
 // packages/client-twitter/src/post.ts
-const webSearchService = new WebSearchService();
 await webSearchService.initialize(runtime);
+const webSearchService = new WebSearchService();
+
 const latestNews = await webSearchService.search(
     "latest news on AI Agents",
     // searchOptions

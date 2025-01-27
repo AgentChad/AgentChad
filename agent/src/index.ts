@@ -72,7 +72,11 @@ import { fuelPlugin } from "@elizaos/plugin-fuel";
 import { genLayerPlugin } from "@elizaos/plugin-genlayer";
 import { giphyPlugin } from "@elizaos/plugin-giphy";
 import { gitcoinPassportPlugin } from "@elizaos/plugin-gitcoin-passport";
+<<<<<<< Updated upstream
 import { hyperliquidPlugin } from "@elizaos/plugin-hyperliquid";
+=======
+//import { initiaPlugin } from "@elizaos/plugin-initia";
+>>>>>>> Stashed changes
 import { imageGenerationPlugin } from "@elizaos/plugin-image-generation";
 import { lensPlugin } from "@elizaos/plugin-lensNetwork";
 import { letzAIPlugin } from "@elizaos/plugin-letzai";
@@ -774,7 +778,15 @@ export async function createAgent(
         // character.plugins are handled when clients are added
         plugins: [
             bootstrapPlugin,
+<<<<<<< Updated upstream
             getSecret(character, "DEXSCREENER_API_KEY")
+=======
+            getSecret(character, "CDP_API_KEY_NAME") &&
+            getSecret(character, "CDP_API_KEY_PRIVATE_KEY")
+                ? agentKitPlugin
+                : null,
+            getSecret(character, "proccess.env.DEXSCREENER_API_KEY")
+>>>>>>> Stashed changes
                 ? dexScreenerPlugin
                 : null,
             getSecret(character, "CONFLUX_CORE_PRIVATE_KEY")
@@ -940,6 +952,29 @@ export async function createAgent(
             getSecret(character, "RESERVOIR_API_KEY")
                 ? createNFTCollectionsPlugin()
                 : null,
+<<<<<<< Updated upstream
+=======
+            getSecret(character, "PYTH_TESTNET_PROGRAM_KEY") ||
+            getSecret(character, "PYTH_MAINNET_PROGRAM_KEY")
+                ? pythDataPlugin
+                : null,
+            getSecret(character, "LND_TLS_CERT") &&
+            getSecret(character, "LND_MACAROON") &&
+            getSecret(character, "LND_SOCKET")
+                ? lightningPlugin
+                : null,
+            getSecret(character, "OPENAI_API_KEY") &&
+            parseBooleanFromText(getSecret(character, "ENABLE_OPEN_AI_COMMUNITY_PLUGIN"))
+                ? openaiPlugin
+                : null,
+            getSecret(character, "DEVIN_API_TOKEN")
+                ? devinPlugin
+                : null,
+            getSecret(character, "HOLDSTATION_PRIVATE_KEY")
+                ? holdstationPlugin
+                : null,
+          //  getSecret(character, "INITIA_PRIVATE_KEY") ? initiaPlugin : null,
+>>>>>>> Stashed changes
         ].filter(Boolean),
         providers: [],
         actions: [],
@@ -1147,6 +1182,12 @@ const startAgents = async () => {
         return startAgent(character, directClient);
     };
 
+<<<<<<< Updated upstream
+=======
+   // directClient.loadCharacterTryPath = loadCharacterTryPath;
+   // directClient.jsonToCharacter = jsonToCharacter;
+
+>>>>>>> Stashed changes
     directClient.start(serverPort);
 
     if (serverPort !== parseInt(settings.SERVER_PORT || "3000")) {

@@ -1,6 +1,10 @@
 import { webSearch } from "./actions/webSearch";
+<<<<<<< Updated upstream
 import { Plugin } from "@elizaos/core";
+=======
+>>>>>>> Stashed changes
 import { WebSearchService } from "./services/webSearchService";
+import type { Plugin } from "@elizaos/core";
 
 export const webSearchPlugin: Plugin = {
     name: "webSearch",
@@ -12,4 +16,5 @@ export const webSearchPlugin: Plugin = {
     clients: [],
 };
 
+export { WebSearchService, webSearch };
 export default webSearchPlugin;

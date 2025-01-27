@@ -16,7 +16,7 @@ export const trustEvaluator: Evaluator = {
     }
 
     try {
-      const evaluation = await trustScoreProvider.evaluateToken(tokenAddress);
+      const evaluation = await trustScoreProvider.evaluateToken(tokenAddress as string);
 
       elizaLogger.log("Trust evaluation:", {
         tokenAddress,
